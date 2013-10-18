@@ -179,7 +179,7 @@ class SQLClient(object):
             raise
         return bio.getvalue(), count
 
-    def get_cat_x_sell(self):
+    def get_cat_x_sell(self, products):
         """
         Get Category Cross-Sells.
         Returns CSV and record count.
