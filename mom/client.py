@@ -189,9 +189,11 @@ class SQLClient(object):
         try:
             conn = self.get_mom_connection()
             cur = conn.cursor()
-            logging.info("ListPull_GetCatXSells")
+            logging.info("ListPull_GetCatXSell")
             start = datetime.datetime.now()
-            cur.execute("exec ListPull_GetCatXSells")
+            product_ids = ",".join(str(p) for p in products)
+            cur.execute("exec ListPull_GetCatXSell @item_list='{}'".
+                        format(product_ids))
             end = datetime.datetime.now()
             logging.info("Took {} seconds".format(end-start))
             data = cur.fetchall()
