@@ -21,20 +21,22 @@ ALTER PROCEDURE [dbo].[ListPull_TimeToReorder]
 AS
 
 BEGIN
-
-SELECT
-	o.ORDERNO,
-	LTRIM(RTRIM(c.EMAIL)) as EMAIL,
-	o.ODR_DATE,
+ 
+SELECT 
+	--o.ORDERNO, 
+	LTRIM(RTRIM(c.EMAIL)) as EMAIL, 
+	--o.ODR_DATE,
 	i.ITEM
 FROM CMS o
 	INNER JOIN ITEMS i ON (o.ORDERNO = i.ORDERNO)
 	INNER JOIN CUST c ON (c.CUSTNUM = o.CUSTNUM)
+	INNER JOIN ClubView cv on (cv.OrdNum = o.ORDERNO AND cv.Stat='A') -- AutoShip 'Active'
 WHERE
 	o.ODR_DATE >= DATEADD(DAY , -90, GETDATE())
 	AND LEN(i.ITEM) = 5
 	AND ISNUMERIC(i.ITEM) = 1
 	AND LEN(c.email) > 0
+	AND c.NOEMAIL = 0
 	AND c.email IS NOT NULL
 	AND c.email NOT LIKE '%@amazon.com'
 ORDER BY o.ORDERNO DESC
