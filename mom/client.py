@@ -66,16 +66,19 @@ class SQLClient(object):
             start = datetime.datetime.now()
             cur.execute("exec ListPull_GetAllCustomers")
             end = datetime.datetime.now()
-            logging.info("Took {} seconds".format(end-start))
+            logging.info("Took {} seconds".format(end - start))
             data = cur.fetchall()
             end2 = datetime.datetime.now()
             logging.info("Got {} rows in {} seconds.".format(len(data),
-                                                             (end2-end)))
+                                                             (end2 - end)))
             for row in data:
-                writer(bio).writerow(row)
+                writer(bio).writerow([unicode(s).encode("utf-8") for s in row])
                 count += 1
             end3 = datetime.datetime.now()
-            logging.info("Wrote CSV in {} seconds.".format(end3-end2))
+            logging.info("Wrote CSV in {} seconds.".format(end3 - end2))
+        except UnicodeEncodeError as uee:
+            logging.error(uee)
+            raise
         except Error as e:
             logging.error(e)
             raise
