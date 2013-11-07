@@ -1,6 +1,6 @@
 USE [Mom-Nutri-Health]
 GO
-/****** Object:  StoredProcedure [dbo].[ListPull_Reengagement]    Script Date: 11/04/2013 11:11:37 ******/
+/****** Object:  StoredProcedure [dbo].[ListPull_Reengagement]    Script Date: 11/07/2013 05:32:42 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -28,7 +28,8 @@ BEGIN
 		c.CUSTNUM,
 		LTRIM(RTRIM(FIRSTNAME)) AS FIRSTNAME,
 		LTRIM(RTRIM(LASTNAME)) AS LASTNAME,
-		MAX(o.ODR_DATE) AS ODR_DATE
+		MAX(o.ODR_DATE) AS ODR_DATE,
+		0 AS ACTIVE
 	FROM CUST c
 	INNER JOIN CMS o ON (c.CUSTNUM = o.CUSTNUM)
 	JOIN CTE_LastOrder LO ON (c.CUSTNUM = LO.CUSTNUM)
@@ -38,7 +39,7 @@ BEGIN
 		AND c.EMAIL <> ''
 		AND c.EMAIL NOT LIKE '%@amazon.com'
 		AND cv.Stat <> 'A' -- exclude autoships
-		AND LO.ODR_DATE > DATEADD(MONTH, -3, CURRENT_TIMESTAMP)
+		AND LO.ODR_DATE <= DATEADD(MONTH, -3, CURRENT_TIMESTAMP)
 	GROUP BY EMAIL, c.CUSTNUM, FIRSTNAME, LASTNAME
 	ORDER BY MAX(o.ODR_DATE) DESC
 	
