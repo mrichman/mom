@@ -71,8 +71,9 @@ class SQLClient(object):
             end2 = datetime.datetime.now()
             logging.info("Got {} rows in {} seconds.".format(len(data),
                                                              (end2 - end)))
+            wr = writer(bio, delimiter='\t')
             for row in data:
-                writer(bio).writerow([unicode(s).encode("utf-8") for s in row])
+                wr.writerow([unicode(s).encode("utf-8") for s in row])
                 count += 1
             end3 = datetime.datetime.now()
             logging.info("Wrote CSV in {} seconds.".format(end3 - end2))
@@ -106,8 +107,9 @@ class SQLClient(object):
             end2 = datetime.datetime.now()
             logging.info("Got {} rows in {} seconds.".format(len(data),
                                                              (end2-end)))
+            wr = writer(bio, delimiter='\t')
             for row in data:
-                writer(bio).writerow(row)
+                wr.writerow(row)
                 count += 1
             end3 = datetime.datetime.now()
             logging.info("Wrote CSV in {} seconds.".format(end3-end2))
@@ -137,8 +139,9 @@ class SQLClient(object):
             end2 = datetime.datetime.now()
             logging.info("Got {} rows in {} seconds.".format(len(data),
                                                              (end2 - end)))
+            wr = writer(bio, delimiter='\t')
             for row in data:
-                writer(bio).writerow(row)
+                wr.writerow(row)
                 count += 1
             end3 = datetime.datetime.now()
             logging.info("Wrote CSV in {} seconds.".format(end3 - end2))
@@ -169,8 +172,9 @@ class SQLClient(object):
             end2 = datetime.datetime.now()
             logging.info("Got {} rows in {} seconds.".format(len(data),
                                                              (end2-end)))
+            wr = writer(bio, delimiter='\t')
             for row in data:
-                writer(bio).writerow(row)
+                wr.writerow(row)
                 count += 1
             end3 = datetime.datetime.now()
             logging.info("Wrote CSV in {} seconds.".format(end3-end2))
@@ -203,8 +207,9 @@ class SQLClient(object):
             end2 = datetime.datetime.now()
             logging.info("Got {} rows in {} seconds.".format(len(data),
                                                              (end2-end)))
+            wr = writer(bio, delimiter='\t')
             for row in data:
-                writer(bio).writerow(row)
+                wr.writerow(row)
                 count += 1
             end3 = datetime.datetime.now()
             logging.info("Wrote CSV in {} seconds.".format(end3-end2))
