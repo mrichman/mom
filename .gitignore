@@ -45,3 +45,4 @@ venv
 config.ini
 
 *.log
+docs/_build
