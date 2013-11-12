@@ -1,5 +1,14 @@
 # -*- coding: utf-8 -*-
 
+"""
+Dydacomp MOM Models
+~~~~~~~~~~~~~~~~~~~
+
+:copyright: (c) 2013 by Mark A. Richman.
+:license: GPL v2, see LICENSE for more details.
+:author: Mark Richman
+"""
+
 import logging
 from datetime import datetime
 

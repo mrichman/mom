@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 """
@@ -16,7 +15,7 @@ from csv import Error, writer
 from io import BytesIO
 from pymssql import connect, InterfaceError
 
-DELIMITER = 'tab'
+DELIMITER = 'tab'  # , ; | tab
 
 
 class SQLClient(object):
@@ -230,6 +229,58 @@ class SQLClient(object):
             cur.execute("exec Amazon_CUST_Insert")
             cur.fetchall()
             return customer_obj
+        except Error as e:
+            logging.error(e)
+            raise
+        except Exception as ex:
+            logging.error(ex.message)
+            raise
+
+    def get_customer(self, custnum):
+        """Gets a MOM customer from the CUST table.
+        :param custnum: The customer number.
+        :returns: Customer object
+        """
+        try:
+            conn = self.get_mom_connection()
+            cur = conn.cursor()
+            logging.info("Amazon_CUST_Insert")
+            #TODO: Implement me
+            cur.execute("exec Amazon_CUST_Insert")
+            cur.fetchall()
+            return None
+        except Error as e:
+            logging.error(e)
+            raise
+        except Exception as ex:
+            logging.error(ex.message)
+            raise
+
+    def create_order(self, order_obj):
+        try:
+            conn = self.get_mom_connection()
+            cur = conn.cursor()
+            logging.info("Amazon_CUST_Insert")
+            #TODO: Implement me
+            cur.execute("exec Amazon_CUST_Insert")
+            cur.fetchall()
+            return order_obj
+        except Error as e:
+            logging.error(e)
+            raise
+        except Exception as ex:
+            logging.error(ex.message)
+            raise
+
+    def get_order(self, ordernum):
+        try:
+            conn = self.get_mom_connection()
+            cur = conn.cursor()
+            logging.info("Amazon_CUST_Insert")
+            #TODO: Implement me
+            cur.execute("exec Amazon_CUST_Insert")
+            cur.fetchall()
+            return None
         except Error as e:
             logging.error(e)
             raise
