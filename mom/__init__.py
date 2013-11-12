@@ -15,7 +15,7 @@ __author__ = 'Mark A. Richman'
 __license__ = 'GPL v2'
 __copyright__ = 'Copyright 2013 Mark A. Richman'
 
-__all__ = ['client']
+__all__ = ['client', 'models']
 
 # Set default logging handler to avoid "No handler found" warnings.
 import logging
