@@ -287,3 +287,19 @@ class SQLClient(object):
         except Exception as ex:
             logging.error(ex.message)
             raise
+
+    def get_order_items(self, ordernum):
+        try:
+            conn = self.get_mom_connection()
+            cur = conn.cursor()
+            logging.info("Amazon_CUST_Insert")
+            #TODO: Implement me
+            cur.execute("exec Amazon_CUST_Insert")
+            cur.fetchall()
+            return None
+        except Error as e:
+            logging.error(e)
+            raise
+        except Exception as ex:
+            logging.error(ex.message)
+            raise
