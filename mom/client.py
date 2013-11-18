@@ -15,7 +15,7 @@ from csv import Error, writer
 from io import BytesIO
 from pymssql import connect, InterfaceError
 
-DELIMITER = 'tab'  # , ; | tab
+DELIMITER = '\t'  # , ; | tab
 
 
 class SQLClient(object):
